@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza", "Pizza\Pizza.csproj", "{A3B15320-7FC9-441E-95AB-158E6295E8E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaTests", "PizzaTests\PizzaTests.csproj", "{8972A72A-6F34-4F97-BC3E-28B80D5ACFFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaConsoleApp", "PizzaConsoleApp\PizzaConsoleApp.csproj", "{8856CD93-EF65-4D23-BA7C-B33D076D67CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C54C6B7F-6EFF-4098-AEE6-5C42E7150BA0}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3B15320-7FC9-441E-95AB-158E6295E8E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3B15320-7FC9-441E-95AB-158E6295E8E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3B15320-7FC9-441E-95AB-158E6295E8E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3B15320-7FC9-441E-95AB-158E6295E8E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8972A72A-6F34-4F97-BC3E-28B80D5ACFFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8972A72A-6F34-4F97-BC3E-28B80D5ACFFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8972A72A-6F34-4F97-BC3E-28B80D5ACFFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8972A72A-6F34-4F97-BC3E-28B80D5ACFFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8856CD93-EF65-4D23-BA7C-B33D076D67CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8856CD93-EF65-4D23-BA7C-B33D076D67CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8856CD93-EF65-4D23-BA7C-B33D076D67CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8856CD93-EF65-4D23-BA7C-B33D076D67CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
