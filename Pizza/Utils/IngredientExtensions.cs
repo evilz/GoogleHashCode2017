@@ -5,14 +5,14 @@ namespace Pizza.Utils
 {
     public static class IngredientExtensions
     {
-        public static string ToSingleCharString(this Ingredient ingredient)
+        public static char ToSingleCharString(this Ingredient ingredient)
         {
             switch (ingredient)
             {
                 case Ingredient.Mushroom:
-                    return "M";
+                    return 'M';
                 case Ingredient.Tomato:
-                    return "T";
+                    return 'T';
                 default:
                     throw new ArgumentOutOfRangeException(nameof(ingredient), ingredient, null);
             }

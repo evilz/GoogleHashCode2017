@@ -1,18 +1,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Pizza.Utils;
 
 namespace Pizza.Models
 {
     public class SlicingChallengeResponse
     {
+        private SlicingChallengeResponse() {}
+
+        public SlicingChallengeResponse(Slice validSlice)
+        {
+            ValidSlices.Add(validSlice);
+        }
+
+        public SlicingChallengeResponse(IEnumerable<Slice> slices )
+        {
+            ValidSlices.AddRange(slices);
+        }
         static SlicingChallengeResponse()
         {
             Empty = new SlicingChallengeResponse();
         }
 
-        public IList<Slice> ValidSlices { get; set; } = new List<Slice>();
+        public List<Slice> ValidSlices { get; } = new List<Slice>();
 
         public int PointEarned => ValidSlices.Sum(slice => slice.Size);
 
@@ -26,7 +36,7 @@ namespace Pizza.Models
 
             ValidSlices.ForEach(slice =>
             {
-                sb.AppendLine($"{slice.TopLeftRow} {slice.TopLeftCol} {slice.BottomRightRow} {slice.BottomRightCol}");
+                sb.AppendLine($"{slice.TopLeft.Y} {slice.TopLeft.X} {slice.BottomRight.Y} {slice.BottomRight.X}");
             });
 
             return sb.ToString();

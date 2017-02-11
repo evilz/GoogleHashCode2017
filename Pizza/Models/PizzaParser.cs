@@ -1,57 +1,45 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Pizza.Utils;
 
 namespace Pizza.Models
 {
-    public class PizzaParser
+    public static class PizzaParser
     {
-        private static readonly Regex MetadataRegex = new Regex(@"(?<line>\d+) (?<column>\d+) (?<ingredient>\d+) (?<slicesize>\d+)");
-
-        private static SlicingContext Parse(TextReader textReader)
+        public static SlicingContext Parse(this TextReader textReader)
         {
-            var metadata = textReader.ReadLine();
+            var metadata = textReader.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            var rowCount = metadata[0];
+            var colCount = metadata[1];
+            var minIngredient = metadata[2];
+            var maxSliceSize = metadata[3];
 
-            var m = MetadataRegex.Match(metadata);
+            var ingredients = Enumerable.Range(0, rowCount)
+                .Select(row => ReadIngredientsFromRow(textReader.ReadLine()))
+                .ToArray();
+            
+            CheckSize(ingredients, rowCount, colCount);
 
-            var minIngredient = int.Parse(m.Groups["ingredient"].Value);
-            var maxSliceSize = int.Parse(m.Groups["slicesize"].Value);
-            var nbColumn = int.Parse(m.Groups["column"].Value);
-            var nbLine = int.Parse(m.Groups["line"].Value);
+            return new SlicingContext(maxSliceSize, minIngredient, ingredients);
+        }
 
-            var ingredients = new Ingredient[nbColumn * nbLine];
-
-            Enumerable
-                .Range(0, nbLine)
-                .ForEach(row =>
-                {
-                    var lineContent = textReader.ReadLine();
-                    lineContent.ForEach((c, col) =>
-                    {
-                        ingredients[col + row * nbColumn] = c.ToIngredient();
-                    });
-                });
-
-            if (ingredients.Any(i => i == Ingredient.Unset))
+        private static void CheckSize(Ingredient[][] ingredients, int rowCount, int colCount)
+        {
+            if (ingredients.Length != rowCount)
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Missing rows ??");
             }
 
-            var pizza = new Pizza(nbLine, nbColumn, ingredients);
-
-            return new SlicingContext(maxSliceSize, minIngredient, pizza);
+            if (ingredients[0].Length != colCount)
+            {
+                throw new InvalidOperationException("Missing column ??");
+            }
         }
 
-        public static SlicingContext Parse(string content)
+        private static Ingredient[] ReadIngredientsFromRow(string rowContent)
         {
-            return Parse(new StringReader(content));
-        }
-
-        public static SlicingContext ParseFile(string filePath)
-        {
-            return Parse(new StreamReader(File.OpenRead(filePath)));
+            return rowContent.Select(c => c.ToIngredient()).ToArray();
         }
     }
 }
